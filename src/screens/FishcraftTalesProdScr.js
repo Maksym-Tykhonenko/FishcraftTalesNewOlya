@@ -54,6 +54,7 @@ const FishcraftTalesProdScr = ({navigation, route}) => {
     'nl-asnbank-sign://',
     'triodosmobilebanking',
     'revolut',
+    //`monzo://`,
   ];
 
   //**івент push_subscribe
@@ -366,6 +367,11 @@ const FishcraftTalesProdScr = ({navigation, route}) => {
         //console.error(err);
       });
       return false;
+    } else if (url.includes('monzo://')) {
+      Linking.openURL(url).catch(err => {
+        //console.error(err);
+      });
+      return false;
     } else {
       const scheme = url.split(':')[0];
       if (customSchemes.includes(scheme)) {
@@ -479,7 +485,7 @@ const FishcraftTalesProdScr = ({navigation, route}) => {
             return;
           }
 
-          Alert.alert('Error', `Failed to load URL: ${url}`, [{text: 'OK'}]);
+          //Alert.alert('Error', `Failed to load URL: ${url}`, [{text: 'OK'}]);
         }}
         //sharedCookiesEnabled={true}
         textZoom={100}
